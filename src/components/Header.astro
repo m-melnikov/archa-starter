@@ -13,16 +13,17 @@ const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWit
 <header class="header">
   <div class="header__inner">
     <a class="header__brand" href="/">{brand}</a>
-
     <nav class="header__nav" aria-label="Primary">
       <ul class="nav">
-        {nav.map((item) => (
-          <li class="nav__item">
-            <a class={`nav__link ${isActive(item.href) ? "is-active" : ""}`} href={item.href}>
-              {item.label}
-            </a>
-          </li>
-        ))}
+        {
+          nav.map((item) => (
+            <li class="nav__item">
+              <a class={`nav__link ${isActive(item.href) ? "is-active" : ""}`} href={item.href}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
   </div>

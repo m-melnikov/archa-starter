@@ -1,4 +1,5 @@
 # Astro Baseline
+
 A boring, production-ready Astro starter.
 
 Astro Baseline is an HTML-first starter designed for developers who want a clean foundation, not a framework demo.
@@ -162,6 +163,7 @@ Create a `.env` file:
 Update `SITE_URL` with your domain.
 
 Used for:
+
 - Canonical URLs
 - JSON-LD
 - SEO consistency

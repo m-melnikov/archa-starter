@@ -1,14 +1,14 @@
 // src/content/site.ts
-export type SiteNavItem = { 
-    label: string;
-    href: string 
+export type SiteNavItem = {
+  label: string;
+  href: string;
 };
 
 export type SiteConfig = {
   name: string;
   tagline: string;
   description: string;
-  url: string;            
+  url: string;
   locale: string;
   author: {
     name: string;
@@ -42,18 +42,18 @@ export const site: SiteConfig = {
     socials: {
       x: "https://x.com/yourhandle",
       github: "https://github.com/yourhandle",
-      linkedin: "https://www.linkedin.com/in/yourhandle/"
-    }
+      linkedin: "https://www.linkedin.com/in/yourhandle/",
+    },
   },
   nav: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Legal", href: "/legal" }
+    { label: "Legal", href: "/legal" },
   ],
   seo: {
     ogImage: "/images/og/og-default.jpg",
     robots: "index,follow",
-    themeColor: "#fbfbf9"
-  }
+    themeColor: "#fbfbf9",
+  },
 };
