@@ -1,26 +1,29 @@
 ---
-import Base from "../layouts/Base.astro";
-import { site } from "../content/site";
+import Base from "@/layouts/Base.astro";
+import Prose from "@/components/starwind/prose";
+import { site } from "@/content/site";
 
 const title = `Legal — ${site.name}`;
 ---
 
 <Base title={title} description={`Legal information for ${site.name}`} canonicalPath="/legal">
-  <article class="prose">
-    <h1>Legal</h1>
+  <article class="content-width">
+    <Prose>
+      <h1>Legal</h1>
 
-    <p>This website is provided as-is, without any guarantee or warranty.</p>
+      <p>This website is provided as-is, without any guarantee or warranty.</p>
 
-    <p>Content published on this site may be modified or removed at any time.</p>
+      <p>Content published on this site may be modified or removed at any time.</p>
 
-    <p>If you have any legal concerns, please contact the site owner.</p>
+      <p>If you have any legal concerns, please contact the site owner.</p>
 
-    {
-      site.author.email && (
-        <p>
-          Contact: <a href={`mailto:${site.author.email}`}>{site.author.email}</a>
-        </p>
-      )
-    }
+      {
+        site.author.email && (
+          <p>
+            Contact: <a href={`mailto:${site.author.email}`}>{site.author.email}</a>
+          </p>
+        )
+      }
+    </Prose>
   </article>
 </Base>

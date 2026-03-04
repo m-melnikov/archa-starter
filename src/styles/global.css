@@ -1,5 +1,8 @@
-@import "./partials/tokens.css";
-@import "./partials/reset.css";
 @import "./partials/fonts.css";
-@import "./partials/structure.css";
-@import "./partials/behaviors.css";
+@import "./partials/starwind.css";
+@import "./partials/animation.css";
+@import "./partials/tokens.css";
+@import "./partials/theme.css";
+@import "./partials/theme-dark.css";
+@import "./partials/base.css";
+@import "./partials/components.css";

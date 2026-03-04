@@ -1,23 +1,26 @@
 ---
-import Base from "../layouts/Base.astro";
-import { site } from "../content/site";
+import Base from "@/layouts/Base.astro";
+import Prose from "@/components/starwind/prose";
+import { site } from "@/content/site";
 
 const title = `About — ${site.name}`;
 ---
 
 <Base title={title} description={`About ${site.name}`} canonicalPath="/about">
-  <article class="prose">
-    <h1>About</h1>
+  <article class="content-width">
+    <Prose>
+      <h1>About</h1>
 
-    <p class="lead">
-      {site.name} is a minimal Astro baseline focused on structure, clarity, and build-time decisions.
-    </p>
+      <p class="text-muted-foreground">
+        {site.name} is a minimal Astro baseline focused on structure, clarity, and build-time decisions.
+      </p>
 
-    <p>
-      This starter intentionally avoids UI kits, heavy abstractions, and runtime JavaScript. It provides a solid
-      foundation for websites that value performance, accessibility, and long-term maintainability.
-    </p>
+      <p>
+        This starter intentionally avoids UI kits, heavy abstractions, and runtime JavaScript. It provides a solid
+        foundation for websites that value performance, accessibility, and long-term maintainability.
+      </p>
 
-    <p>You are expected to adapt it, extend it, and make it your own.</p>
+      <p>You are expected to adapt it, extend it, and make it your own.</p>
+    </Prose>
   </article>
 </Base>

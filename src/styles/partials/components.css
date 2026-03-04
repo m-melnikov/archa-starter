@@ -1,0 +1,5 @@
+@layer components {
+  .content-width {
+    @apply mx-auto max-w-7xl px-4;
+  }
+}

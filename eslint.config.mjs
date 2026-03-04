@@ -1,9 +1,9 @@
-import { defineConfig } from "eslint/config";
-import globals from "globals";
 import js from "@eslint/js";
-import tseslint from "typescript-eslint";
+import { defineConfig } from "eslint/config";
 import astro from "eslint-plugin-astro";
+import tseslint from "typescript-eslint";
 import prettier from "eslint-plugin-prettier";
+import globals from "globals";
 
 // Parsers
 const tsParser = tseslint.parser;
