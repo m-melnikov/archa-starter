@@ -115,7 +115,7 @@ Example:
   title="Contact"
   description="Get in touch"
   canonicalPath="/contact"
-  mainCentered
+  contentCentered
 >
   ...
 </Base>
@@ -123,7 +123,7 @@ Example:
 
 Supported layout flags:
 
-- `mainCentered` (example)
+- `contentCentered` (example)
 - Easy to extend (`mainWide`, `mainNarrow`, etc.)
 
 The layout never guesses.

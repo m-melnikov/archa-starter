@@ -4,6 +4,11 @@ export type SiteNavItem = {
   href: string;
 };
 
+export type SocialItem = {
+  label: string;
+  href: string;
+};
+
 export type SiteConfig = {
   name: string;
   tagline: string;
@@ -14,6 +19,7 @@ export type SiteConfig = {
     name: string;
     email?: string;
     url?: string;
+    socials?: SocialItem[];
   };
   nav: SiteNavItem[];
   seo: {
@@ -24,16 +30,22 @@ export type SiteConfig = {
 };
 
 export const site: SiteConfig = {
-  name: "Career Site",
+  name: "Example Site",
   tagline: "A boring, production-ready Astro starter.",
   description:
-    "Career Site is a minimal HTML-first starter with senior defaults: SEO, JSON-LD, a11y basics, and clean structure.",
+    "Example Site is a minimal HTML-first starter with senior defaults: SEO, JSON-LD, a11y basics, and clean structure.",
   url: import.meta.env.SITE_URL ?? "https://example.com",
   locale: "en",
   author: {
-    name: "Your Name",
+    name: "Example",
     email: "hello@example.com",
     url: "https://example.com",
+    socials: [
+      { label: "Telegram", href: "https://t.me" },
+      { label: "WhatsApp", href: "https://wa.me" },
+      { label: "Instagram", href: "https://instagram.com" },
+      { label: "GitHub", href: "https://github.com" },
+    ],
   },
   nav: [
     { label: "Home", href: "/" },

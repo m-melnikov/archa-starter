@@ -1,10 +1,14 @@
 ---
 import "@/styles/global.css";
 
-import IconBrandGithub from "@tabler/icons/filled/brand-github.svg";
-import IconBrandYoutube from "@tabler/icons/filled/brand-youtube.svg";
+import IconBrandGithub from "@tabler/icons/outline/brand-github.svg";
+import IconBrandYoutube from "@tabler/icons/outline/brand-youtube.svg";
 import IconBrandX from "@tabler/icons/outline/brand-x.svg";
-import IconBrandLinkedin from "@tabler/icons/filled/brand-linkedin.svg";
+import IconBrandLinkedin from "@tabler/icons/outline/brand-linkedin.svg";
+import IconBrandInstagram from "@tabler/icons/outline/brand-instagram.svg";
+import IconBrandFacebook from "@tabler/icons/outline/brand-facebook.svg";
+import IconBrandWhatsApp from "@tabler/icons/outline/brand-whatsapp.svg";
+import IconBrandTelegram from "@tabler/icons/outline/brand-telegram.svg";
 
 import Cloudflare from "@/components/Cloudflare.astro";
 import SEO from "@/components/SEO.astro";
@@ -20,18 +24,31 @@ const {
   ogImage = site.seo.ogImage,
   robots = site.seo.robots,
   jsonLd,
-  mainCentered = false,
+  contentCentered = false,
 } = Astro.props;
 
 const CF_TOKEN = "XXX";
 const canonical = new URL(canonicalPath, site.url).toString();
 
-const socialLinks: SocialLink[] = [
-  { name: "Twitter", href: "https://twitter.com", icon: IconBrandX },
-  { name: "GitHub", href: "https://github.com", icon: IconBrandGithub },
-  { name: "LinkedIn", href: "https://linkedin.com", icon: IconBrandLinkedin },
-  { name: "YouTube", href: "https://youtube.com", icon: IconBrandYoutube },
-];
+const icons: any = {
+  Twitter: IconBrandX,
+  GitHub: IconBrandGithub,
+  LinkedIn: IconBrandLinkedin,
+  YouTube: IconBrandYoutube,
+  Instagram: IconBrandInstagram,
+  Facebook: IconBrandFacebook,
+  WhatsApp: IconBrandWhatsApp,
+  Telegram: IconBrandTelegram,
+};
+
+const socialLinks: SocialLink[] =
+  site.author.socials?.map((social) => {
+    return {
+      name: social.label,
+      href: social.href,
+      icon: icons[social.label],
+    };
+  }) ?? [];
 ---
 
 <!doctype html>
@@ -54,10 +71,10 @@ const socialLinks: SocialLink[] = [
 
   <body>
     <SkipLink />
-    <Navbar1 siteName="Career Site" links={site.nav} ctaText="Get Started" ctaHref="#get-started" />
-    <main id="main" class:list={["", mainCentered && "grid place-items-center"]}>
+    <Navbar1 siteName="Example Site" links={site.nav} ctaText="Get Started" ctaHref="#get-started" />
+    <main id="main" class:list={["", contentCentered && "grid place-items-center"]}>
       <slot />
     </main>
-    <Footer1 socialLinks={socialLinks} companyName="Career Site" />
+    <Footer1 socialLinks={socialLinks} companyName="Example Site" />
   </body>
 </html>
