@@ -1,18 +1,18 @@
 ---
-import Base from "@/layouts/Base.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import Prose from "@/components/starwind/prose";
 import { site } from "@/content/site";
 
 const title = `About — ${site.name}`;
 ---
 
-<Base title={title} description={`About ${site.name}`} canonicalPath="/about">
+<BaseLayout title={title} description={`About ${site.name}`} canonicalPath="/about">
   <article class="content-width">
     <Prose>
       <h1>About</h1>
 
       <p class="text-muted-foreground">
-        {site.name} is a minimal Astro baseline focused on structure, clarity, and build-time decisions.
+        {site.name} is a minimal Astro Example focused on structure, clarity, and build-time decisions.
       </p>
 
       <p>
@@ -23,4 +23,4 @@ const title = `About — ${site.name}`;
       <p>You are expected to adapt it, extend it, and make it your own.</p>
     </Prose>
   </article>
-</Base>
+</BaseLayout>

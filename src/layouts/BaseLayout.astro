@@ -16,6 +16,7 @@ import SkipLink from "@/components/SkipLink.astro";
 import Footer1, { type SocialLink } from "@/components/starwind-pro/footer-01/Footer1.astro";
 import Navbar1 from "@/components/starwind-pro/navbar-01/Navbar1.astro";
 import { site } from "@/content/site";
+import ThemeToggle from "@/components/ThemeToggle.astro";
 
 const {
   title = site.name,
@@ -66,6 +67,7 @@ const socialLinks: SocialLink[] =
       robots={robots}
       jsonLd={jsonLd}
     />
+    <ThemeToggle />
     <Cloudflare token={CF_TOKEN} />
   </head>
 

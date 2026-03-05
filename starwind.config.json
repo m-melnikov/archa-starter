@@ -27,6 +27,10 @@
     {
       "name": "separator",
       "version": "1.0.1"
+    },
+    {
+      "name": "toggle",
+      "version": "1.0.2"
     }
   ]
 }

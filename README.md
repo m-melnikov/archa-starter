@@ -1,8 +1,8 @@
-# Astro Baseline
+# Astro Example
 
 A boring, production-ready Astro starter.
 
-Astro Baseline is an HTML-first starter designed for developers who want a clean foundation, not a framework demo.
+Astro Example is an HTML-first starter designed for developers who want a clean foundation, not a framework demo.
 
 No UI kit.<br>
 No runtime JavaScript by default.<br>
@@ -12,7 +12,7 @@ Just solid structure, senior defaults, and a clear separation of concerns.
 
 ## Philosophy
 
-Astro Baseline follows a simple rule:
+Astro Example follows a simple rule:
 
 **HTML is the source of truth.**
 
@@ -27,7 +27,7 @@ This starter is meant to disappear once you start building.
 
 ### Structure
 
-- Clean layout system (`Base.astro`)
+- Clean layout system (`BaseLayout.astro`)
 - Header / Footer components
 - Skip link for accessibility
 - 404 page included
@@ -111,7 +111,7 @@ The layout is explicit and declarative.
 Example:
 
 ```
-<Base
+<BaseLayout
   title="Contact"
   description="Get in touch"
   canonicalPath="/contact"
@@ -146,13 +146,13 @@ const jsonLd = {
 
 Passed directly to the layout:
 
-`<Base jsonLd={jsonLd}>`
+`<BaseLayout jsonLd={jsonLd}>`
 
 No JSON-LD pollution by default.
 
 ## Environment
 
-Astro Baseline expects the following environment variable:
+Astro Example expects the following environment variable:
 
 `SITE_URL=https://example.com`
 
@@ -188,9 +188,9 @@ If you want a UI kit or heavy interactivity out of the box, this is not for you.
 - “Install and ship in 5 minutes” demos
 - Framework-centric mental models
 
-## Extending Astro Baseline
+## Extending Astro Example
 
-Astro Baseline is designed to pair naturally with:
+Astro Example is designed to pair naturally with:
 
 - **Astro Content Collections**
 - **Build-time tools** (e.g. Frontmatter Core)
@@ -208,7 +208,7 @@ Build good websites.
 
 ## Final note
 
-Astro Baseline is intentionally boring.
+Astro Example is intentionally boring.
 
 That’s the point.
 

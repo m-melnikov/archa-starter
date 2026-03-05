@@ -1,12 +1,12 @@
 ---
-import Base from "@/layouts/Base.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import Prose from "@/components/starwind/prose";
 import { site } from "@/content/site";
 
 const title = `Legal — ${site.name}`;
 ---
 
-<Base title={title} description={`Legal information for ${site.name}`} canonicalPath="/legal">
+<BaseLayout title={title} description={`Legal information for ${site.name}`} canonicalPath="/legal">
   <article class="content-width">
     <Prose>
       <h1>Legal</h1>
@@ -26,4 +26,4 @@ const title = `Legal — ${site.name}`;
       }
     </Prose>
   </article>
-</Base>
+</BaseLayout>

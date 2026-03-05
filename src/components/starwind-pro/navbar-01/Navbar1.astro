@@ -15,6 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/starwind/sheet";
+import ThemeSwitcher1 from "../theme-switcher-01/ThemeSwitcher1.astro";
 
 /** Navigation link structure */
 export interface NavLink {
@@ -81,49 +82,54 @@ const hasLogoSlot = Astro.slots.has("logo");
       }
     </div>
 
-    <!-- Desktop CTA Button -->
-    <div class="hidden @2xl:block">
-      <Button href={ctaHref}>{ctaText}</Button>
-    </div>
+    <div class="flex gap-4">
+      <!-- Desktop CTA Button -->
+      <div class="hidden @2xl:block">
+        <Button href={ctaHref}>{ctaText}</Button>
+      </div>
 
-    <!-- Mobile Menu Button -->
-    <div class="@2xl:hidden">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" class="[&_svg]:size-8" aria-label="Open menu">
-            <IconMenu2 />
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="right" class="max-w-70 sm:max-w-75">
-          <SheetHeader>
-            <SheetTitle>
-              {hasLogoSlot ? <slot name="logo" /> : <span class="text-xl font-semibold">{siteName}</span>}
-            </SheetTitle>
-            <Separator class="mt-2" />
-          </SheetHeader>
+      <!-- Mobile Menu Button -->
+      <div class="@2xl:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" class="[&_svg]:size-8" aria-label="Open menu">
+              <IconMenu2 />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" class="max-w-70 sm:max-w-75">
+            <SheetHeader>
+              <SheetTitle>
+                {hasLogoSlot ? <slot name="logo" /> : <span class="text-xl font-semibold">{siteName}</span>}
+              </SheetTitle>
+              <Separator class="mt-2" />
+            </SheetHeader>
 
-          <div class="-mt-5 flex flex-col px-4">
-            {
-              links.map((link) => (
-                <SheetClose asChild>
-                  <a
-                    href={link.href}
-                    class="text-muted-foreground hover:text-foreground -mx-3 rounded-md px-3 py-2 text-lg font-medium transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </SheetClose>
-              ))
-            }
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button href={ctaHref} class="w-full">{ctaText}</Button>
-            </SheetClose>
-          </SheetFooter>
-          <IconX class="size-7" slot="icon" />
-        </SheetContent>
-      </Sheet>
+            <div class="-mt-5 flex flex-col px-4">
+              {
+                links.map((link) => (
+                  <SheetClose asChild>
+                    <a
+                      href={link.href}
+                      class="text-muted-foreground hover:text-foreground -mx-3 rounded-md px-3 py-2 text-lg font-medium transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </SheetClose>
+                ))
+              }
+            </div>
+            <SheetFooter>
+              <SheetClose asChild>
+                <Button href={ctaHref} class="w-full">{ctaText}</Button>
+              </SheetClose>
+            </SheetFooter>
+            <IconX class="size-7" slot="icon" />
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      <!-- Theme Toggle Switcher -->
+      <ThemeSwitcher1 />
     </div>
   </div>
 </nav>

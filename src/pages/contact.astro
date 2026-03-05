@@ -1,12 +1,12 @@
 ---
-import Base from "@/layouts/Base.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import Prose from "@/components/starwind/prose";
 import { site } from "@/content/site";
 
 const title = `Contact — ${site.name}`;
 ---
 
-<Base title={title} description={`Contact ${site.name}`} canonicalPath="/contact" contentCentered>
+<BaseLayout title={title} description={`Contact ${site.name}`} canonicalPath="/contact" contentCentered>
   <article class="content-width">
     <Prose>
       <h1>Contact</h1>
@@ -23,7 +23,7 @@ const title = `Contact — ${site.name}`;
         )
       }
 
-      <p>This keeps the baseline simple and avoids unnecessary JavaScript.</p>
+      <p>This keeps the Example simple and avoids unnecessary JavaScript.</p>
     </Prose>
   </article>
-</Base>
+</BaseLayout>
