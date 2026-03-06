@@ -1,15 +1,6 @@
 ---
 import "@/styles/global.css";
 
-import IconBrandGithub from "@tabler/icons/outline/brand-github.svg";
-import IconBrandYoutube from "@tabler/icons/outline/brand-youtube.svg";
-import IconBrandX from "@tabler/icons/outline/brand-x.svg";
-import IconBrandLinkedin from "@tabler/icons/outline/brand-linkedin.svg";
-import IconBrandInstagram from "@tabler/icons/outline/brand-instagram.svg";
-import IconBrandFacebook from "@tabler/icons/outline/brand-facebook.svg";
-import IconBrandWhatsApp from "@tabler/icons/outline/brand-whatsapp.svg";
-import IconBrandTelegram from "@tabler/icons/outline/brand-telegram.svg";
-
 import Cloudflare from "@/components/Cloudflare.astro";
 import SEO from "@/components/SEO.astro";
 import SkipLink from "@/components/SkipLink.astro";
@@ -17,6 +8,7 @@ import Footer1, { type SocialLink } from "@/components/starwind-pro/footer-01/Fo
 import Navbar1 from "@/components/starwind-pro/navbar-01/Navbar1.astro";
 import { site } from "@/content/site";
 import ThemeToggle from "@/components/ThemeToggle.astro";
+import { getIcon } from "@/utilities/getIcon";
 
 const {
   title = site.name,
@@ -31,25 +23,12 @@ const {
 const CF_TOKEN = "XXX";
 const canonical = new URL(canonicalPath, site.url).toString();
 
-const icons: any = {
-  Twitter: IconBrandX,
-  GitHub: IconBrandGithub,
-  LinkedIn: IconBrandLinkedin,
-  YouTube: IconBrandYoutube,
-  Instagram: IconBrandInstagram,
-  Facebook: IconBrandFacebook,
-  WhatsApp: IconBrandWhatsApp,
-  Telegram: IconBrandTelegram,
-};
-
 const socialLinks: SocialLink[] =
-  site.author.socials?.map((social) => {
-    return {
-      name: social.label,
-      href: social.href,
-      icon: icons[social.label],
-    };
-  }) ?? [];
+  site.author.socials?.map((social) => ({
+    name: social.label,
+    href: social.href,
+    icon: getIcon(social.label),
+  })) ?? [];
 ---
 
 <!doctype html>
@@ -71,10 +50,16 @@ const socialLinks: SocialLink[] =
     <Cloudflare token={CF_TOKEN} />
   </head>
 
-  <body>
+  <body class="bg-background text-foreground flex min-h-dvh flex-col scheme-light dark:scheme-dark">
     <SkipLink />
     <Navbar1 siteName="Example Site" links={site.nav} ctaText="Get Started" ctaHref="#get-started" />
-    <main id="main" class:list={["", contentCentered && "grid place-items-center"]}>
+    <main
+      id="main"
+      class:list={[
+        "mx-auto w-full flex-1 shrink-0 basis-auto px-1 py-8 sm:px-6",
+        contentCentered && "grid place-items-center",
+      ]}
+    >
       <slot />
     </main>
     <Footer1 socialLinks={socialLinks} companyName="Example Site" />
