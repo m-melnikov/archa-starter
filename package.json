@@ -1,7 +1,7 @@
 {
-  "name": "astro-career-starter",
+  "name": "archa-starter-astro",
   "type": "module",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -20,6 +20,7 @@
     "@eslint/js": "^9.39.3",
     "@tailwindcss/forms": "^0.5.11",
     "@tailwindcss/vite": "^4",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "eslint": "^9.39.3",
     "eslint-plugin-astro": "^1.6.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
@@ -27,6 +28,7 @@
     "globals": "^17.4.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-astro-organize-imports": "^0.4.11",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
     "typescript": "^5.0.0",

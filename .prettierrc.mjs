@@ -6,6 +6,8 @@ const config = {
   printWidth: 120,
   tabWidth: 2,
 
+  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss", "prettier-plugin-astro-organize-imports"],
+
   overrides: [
     {
       files: ["**/*.astro"],
@@ -14,8 +16,6 @@ const config = {
       },
     },
   ],
-
-  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
 };
 
 export default config;

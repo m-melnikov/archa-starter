@@ -9,12 +9,12 @@
     }
   },
   "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils"
+    "components": "@comp",
+    "utils": "@util"
   },
   "tailwind": {
     "config": "",
-    "css": "src/styles/starwind.css",
+    "css": "@styl/starwind.css",
     "baseColor": "neutral",
     "cssVariables": true
   },

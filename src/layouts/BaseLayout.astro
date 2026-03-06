@@ -1,14 +1,13 @@
 ---
-import "@/styles/global.css";
-
-import Cloudflare from "@/components/Cloudflare.astro";
-import SEO from "@/components/SEO.astro";
-import SkipLink from "@/components/SkipLink.astro";
-import Footer1, { type SocialLink } from "@/components/starwind-pro/footer-01/Footer1.astro";
-import Navbar1 from "@/components/starwind-pro/navbar-01/Navbar1.astro";
-import { site } from "@/content/site";
-import ThemeToggle from "@/components/ThemeToggle.astro";
-import { getIcon } from "@/utilities/getIcon";
+import Cloudflare from "@comp/Cloudflare.astro";
+import SEO from "@comp/SEO.astro";
+import SkipLink from "@comp/SkipLink.astro";
+import Footer1, { type SocialLink } from "@comp/starwind-pro/footer-01/Footer1.astro";
+import Navbar1 from "@comp/starwind-pro/navbar-01/Navbar1.astro";
+import ThemeToggle from "@comp/ThemeToggle.astro";
+import { site } from "@data/site";
+import "@styl/global.css";
+import { getIcon } from "@util/getIcon";
 
 const {
   title = site.name,
@@ -52,7 +51,7 @@ const socialLinks: SocialLink[] =
 
   <body class="bg-background text-foreground flex min-h-dvh flex-col scheme-light dark:scheme-dark">
     <SkipLink />
-    <Navbar1 siteName="Example Site" links={site.nav} ctaText="Get Started" ctaHref="#get-started" />
+    <Navbar1 siteName={site.name} links={site.nav} ctaText="Get Started" ctaHref="#get-started" />
     <main
       id="main"
       class:list={[
@@ -62,6 +61,6 @@ const socialLinks: SocialLink[] =
     >
       <slot />
     </main>
-    <Footer1 socialLinks={socialLinks} companyName="Example Site" />
+    <Footer1 socialLinks={socialLinks} companyName={site.name} />
   </body>
 </html>

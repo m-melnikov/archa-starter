@@ -19,4 +19,10 @@ const icons: Record<string, SvgComponent & ImageMetadata> = {
   telegram: IconBrandTelegram,
 };
 
-export const getIcon = (icon: string) => icons[icon.toLowerCase()] ?? null;
+export const getIcon = (iconName: string) => {
+  const icon = icons[iconName.toLowerCase()];
+
+  if (icon) return icon;
+
+  throw new Error("— Utilities: unknown icon name");
+};
