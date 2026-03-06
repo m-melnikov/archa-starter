@@ -35,6 +35,9 @@
   --radius-2xl: calc(var(--radius) + 0.5rem);
   --radius-3xl: calc(var(--radius) + 1rem);
 
+  --container-content: var(--container-7xl);
+  --container-content-narrow: var(--container-3xl);
+
   --color-sidebar: var(--sidebar-background);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);

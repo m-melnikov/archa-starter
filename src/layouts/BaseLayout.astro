@@ -1,10 +1,12 @@
 ---
-import Cloudflare from "@comp/Cloudflare.astro";
-import SEO from "@comp/SEO.astro";
-import SkipLink from "@comp/SkipLink.astro";
+import Cloudflare from "@comp/head/Cloudflare.astro";
+import SEO from "@comp/head/SEO.astro";
+import SkipLink from "@comp/head/SkipLink.astro";
+import ThemeToggle from "@comp/head/ThemeToggle.astro";
+
 import Footer1, { type SocialLink } from "@comp/starwind-pro/footer-01/Footer1.astro";
 import Navbar1 from "@comp/starwind-pro/navbar-01/Navbar1.astro";
-import ThemeToggle from "@comp/ThemeToggle.astro";
+
 import { site } from "@data/site";
 import "@styl/global.css";
 import { getIcon } from "@util/getIcon";

@@ -37,7 +37,7 @@ interface Props extends HTMLAttributes<"nav"> {
 }
 
 // you could also swap "sticky" for "fixed"
-const navStyles = tv({
+const headerStyles = tv({
   base: "bg-background/60 sticky @container inset-x-0 top-0 z-50 border-b backdrop-blur",
 });
 
@@ -53,7 +53,7 @@ const {
 const hasLogoSlot = Astro.slots.has("logo");
 ---
 
-<nav class={navStyles({ class: className })} {...rest}>
+<header class={headerStyles({ class: className })} {...rest}>
   <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
     <!-- Logo / Site Name -->
     <div class="flex shrink-0 items-center">
@@ -69,7 +69,7 @@ const hasLogoSlot = Astro.slots.has("logo");
     </div>
 
     <!-- Desktop Navigation Links -->
-    <div class="hidden items-center gap-1 @2xl:flex">
+    <nav class="hidden items-center gap-1 @2xl:flex">
       {
         links.map((link) => (
           <a
@@ -80,7 +80,7 @@ const hasLogoSlot = Astro.slots.has("logo");
           </a>
         ))
       }
-    </div>
+    </nav>
 
     <div class="flex gap-4">
       <!-- Desktop CTA Button -->
@@ -89,7 +89,7 @@ const hasLogoSlot = Astro.slots.has("logo");
       </div>
 
       <!-- Mobile Menu Button -->
-      <div class="@2xl:hidden">
+      <nav class="@2xl:hidden">
         <Sheet>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" class="[&_svg]:size-8" aria-label="Open menu">
@@ -126,10 +126,10 @@ const hasLogoSlot = Astro.slots.has("logo");
             <IconX class="size-7" slot="icon" />
           </SheetContent>
         </Sheet>
-      </div>
+      </nav>
 
       <!-- Theme Toggle Switcher -->
       <ThemeSwitcher1 />
     </div>
   </div>
-</nav>
+</header>

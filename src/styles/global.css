@@ -2,7 +2,7 @@
 @import "./partials/starwind.css";
 @import "./partials/animation.css";
 @import "./partials/tokens.css";
+@import "./partials/tokens-dark.css";
 @import "./partials/theme.css";
-@import "./partials/theme-dark.css";
 @import "./partials/base.css";
 @import "./partials/components.css";

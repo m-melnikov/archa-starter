@@ -4,10 +4,11 @@ import Prose from "@comp/starwind/prose";
 import { site } from "@data/site";
 
 const title = `Contact — ${site.name}`;
+const description = `Contact ${site.name}`;
 ---
 
-<BaseLayout title={title} description={`Contact ${site.name}`} canonicalPath="/contact" contentCentered>
-  <article class="content-width">
+<BaseLayout title={title} description={description} canonicalPath="/contact" contentCentered>
+  <article class="content">
     <Prose>
       <h1>Contact</h1>
 
