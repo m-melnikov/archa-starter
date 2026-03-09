@@ -6,7 +6,7 @@
     "cssVariables": true
   },
   "componentDir": "src/components",
-  "utilsDir": "src/lib/utils",
+  "utilsDir": "src/utils",
   "components": [
     {
       "name": "prose",
@@ -35,6 +35,10 @@
     {
       "name": "tabs",
       "version": "1.4.2"
+    },
+    {
+      "name": "select",
+      "version": "1.8.4"
     }
   ]
 }

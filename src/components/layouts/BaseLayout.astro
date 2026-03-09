@@ -1,15 +1,15 @@
 ---
-import Cloudflare from "@comp/head/Cloudflare.astro";
-import SEO from "@comp/head/SEO.astro";
-import SkipLink from "@comp/head/SkipLink.astro";
-import ThemeToggle from "@comp/head/ThemeToggle.astro";
+import Cloudflare from "@/components/head/Cloudflare.astro";
+import SEO from "@/components/head/SEO.astro";
+import SkipLink from "@/components/head/SkipLink.astro";
+import ThemeToggle from "@/components/head/ThemeToggle.astro";
 
-import Footer1, { type SocialLink } from "@comp/starwind-pro/footer-01/Footer1.astro";
-import Navbar1 from "@comp/starwind-pro/navbar-01/Navbar1.astro";
+import Footer1, { type SocialLink } from "@/components/starwind-pro/footer-01/Footer1.astro";
+import Navbar1 from "@/components/starwind-pro/navbar-01/Navbar1.astro";
 
-import { site } from "@data/site";
-import "@styl/global.css";
-import { getIcon } from "@util/getIcon";
+import { site } from "@/content/site";
+import "@/styles/global.css";
+import { getIcon } from "@/utils/getIcon";
 
 const {
   title = site.name,

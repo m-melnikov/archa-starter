@@ -1,0 +1,117 @@
+---
+import BaseLayout from "@/components/layouts/BaseLayout.astro";
+import Prose from "@/components/starwind/prose";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectSearch,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/starwind/select";
+import { site } from "@/content/site";
+import { getCollection } from "astro:content";
+
+const title = `Open roles — ${site.name}`;
+const description = `Open roles at ${site.name}`;
+
+const jobs: any[] = await getCollection("jobs");
+const departments: string[] = [...new Set(jobs.map((job: any) => job.data.department))];
+const locations: string[] = [...new Set(jobs.map((job: any) => job.data.location))];
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="content">
+    <Prose>
+      <h1>Open positions</h1>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
+      </p>
+
+      <Select id="department-filter" name="department" defaultValue="All" class="not-sw-prose">
+        <SelectTrigger class="w-60">
+          <SelectValue placeholder="Select a department" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectSearch placeholder="Search departments..." emptyText="No department found." />
+          <SelectGroup>
+            <SelectItem value="All">All</SelectItem>
+            {departments.map((department: string) => <SelectItem value={department}>{department}</SelectItem>)}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+
+      <Select id="location-filter" name="location" defaultValue="All" class="not-sw-prose">
+        <SelectTrigger class="w-60">
+          <SelectValue placeholder="Select a location" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectSearch placeholder="Search locations..." emptyText="No location found." />
+          <SelectGroup>
+            <SelectItem value="All">All</SelectItem>
+            {locations.map((location: string) => <SelectItem value={location}>{location}</SelectItem>)}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+
+      <div id="open-roles"></div>
+    </Prose>
+  </article>
+</BaseLayout>
+
+<script>
+  import type { SelectChangeEvent } from "@/components/starwind/select/SelectTypes";
+  import type { Job } from "@/content/jobs/JobType";
+
+  // Variables
+
+  const allJobs: Job[] = await fetch("/api/jobs.json").then((r) => r.json());
+
+  const filters = {
+    department: "",
+    location: "",
+  };
+
+  // Functions
+
+  function filterJobs(): Job[] {
+    const department = filters.department.trim();
+    const location = filters.location.trim();
+
+    const filteredJobs = allJobs.filter(
+      (job: Job) =>
+        (!department || department === "All" || job.department === department) &&
+        (!location || location === "All" || job.location === location),
+    );
+
+    return filteredJobs;
+  }
+
+  function renderJobs(jobs: Job[]) {
+    const openRoles = document.getElementById("open-roles");
+
+    if (openRoles) {
+      openRoles.innerHTML = jobs.map((job: Job) => `<p>${job.title}</p>`).join("\n");
+    }
+  }
+
+  // Operations
+
+  renderJobs(filterJobs());
+
+  // Events
+
+  document.getElementById("department-filter")?.addEventListener("starwind-select:change", (event: Event) => {
+    const selectChangeEvent = event as SelectChangeEvent;
+    filters.department = selectChangeEvent.detail.label ?? "";
+    renderJobs(filterJobs());
+  });
+
+  document.getElementById("location-filter")?.addEventListener("starwind-select:change", (event: Event) => {
+    const selectChangeEvent = event as SelectChangeEvent;
+    filters.location = selectChangeEvent.detail.label ?? "";
+    renderJobs(filterJobs());
+  });
+</script>

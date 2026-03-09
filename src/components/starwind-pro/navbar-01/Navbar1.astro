@@ -4,8 +4,8 @@ import IconX from "@tabler/icons/outline/x.svg";
 import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
 
-import { Button } from "@comp/starwind/button";
-import { Separator } from "@comp/starwind/separator";
+import { Button } from "@/components/starwind/button";
+import { Separator } from "@/components/starwind/separator";
 import {
   Sheet,
   SheetClose,
@@ -14,7 +14,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@comp/starwind/sheet";
+} from "@/components/starwind/sheet";
 import ThemeSwitcher1 from "../theme-switcher-01/ThemeSwitcher1.astro";
 
 /** Navigation link structure */
@@ -25,7 +25,7 @@ export interface NavLink {
   href: string;
 }
 
-interface Props extends HTMLAttributes<"nav"> {
+interface Props extends HTMLAttributes<"header"> {
   /** Site name displayed when no logo slot is provided */
   siteName?: string;
   /** Array of navigation links */

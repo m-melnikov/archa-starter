@@ -17,7 +17,7 @@ Astro Example follows a simple rule:
 **HTML is the source of truth.**
 
 - Structure lives in `.astro` files
-- Content lives in data (`site.ts`, Markdown, YAML, etc.)
+- Content lives in content (`site.ts`, Markdown, YAML, etc.)
 - Behavior is opt-in and explicit
 - CSS is boring, predictable, and layered
 
@@ -76,7 +76,7 @@ src/styles/
 - Explicit @font-face
 - No external font dependency by default
 
-### Configuration as data
+### Configuration as content
 
 All site metadata lives in one place:
 

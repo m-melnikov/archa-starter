@@ -1,0 +1,23 @@
+---
+import type { Job } from "@/content/jobs/JobType";
+import type { HTMLAttributes } from "astro/types";
+import { tv } from "tailwind-variants";
+
+interface Props extends HTMLAttributes<"article"> {
+  /** Job information */
+  job: Job;
+}
+
+export const jobCard = tv({});
+
+const { job, class: className, ...rest } = Astro.props;
+---
+
+<article class={jobCard({ class: className })} {...rest}>
+  {job.title}
+  <br />
+  {job.department}
+  <br />
+  {job.location}
+  <br />
+</article>

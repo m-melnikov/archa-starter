@@ -20,9 +20,16 @@ export default defineConfig([
     },
   },
 
-  // Base configs
+  // TypeScript config
   js.configs.recommended,
   tseslint.configs.recommended,
+  {
+    files: ["**/*.ts"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+    },
+  },
 
   // Prettier config
   {
@@ -35,7 +42,7 @@ export default defineConfig([
     },
   },
 
-  // astro setup with a11y
+  // Astro setup with a11y
   astro.configs.recommended,
   astro.configs["jsx-a11y-recommended"],
   {
@@ -54,6 +61,7 @@ export default defineConfig([
       "no-undef": "off",
       "astro/jsx-a11y/anchor-is-valid": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/prefer-const": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
     },
   },
