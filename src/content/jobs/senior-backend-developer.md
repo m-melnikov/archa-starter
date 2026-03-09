@@ -1,5 +1,6 @@
 ---
 title: "Senior Backend Engineer"
+description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
 department: "Software Engineers"
 location: "Osh"
 type: "Contract"

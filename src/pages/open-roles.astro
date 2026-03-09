@@ -25,40 +25,42 @@ const locations: string[] = [...new Set(jobs.map((job) => job.location))];
 
 <BaseLayout title={title} description={description}>
   <article class="content">
-    <Prose>
+    <Prose class="max-w-full">
       <h1>Open positions</h1>
 
-      <p>
+      <p class="max-w-[65ch]">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.
       </p>
 
-      <Select id="department-filter" name="department" defaultValue="All" class="not-sw-prose">
-        <SelectTrigger class="w-60">
-          <SelectValue placeholder="Select a department" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectSearch placeholder="Search departments..." emptyText="No department found." />
-          <SelectGroup>
-            <SelectItem value="All">All</SelectItem>
-            {departments.map((department: string) => <SelectItem value={department}>{department}</SelectItem>)}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+      <section class="not-sw-prose flex flex-col gap-4 sm:flex-row">
+        <Select id="department-filter" name="department" focusOnMobile={false}>
+          <SelectTrigger class="w-full sm:w-60">
+            <SelectValue placeholder="Select a department" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectSearch placeholder="Search departments..." emptyText="No department found." />
+            <SelectGroup>
+              <SelectItem value="All">All</SelectItem>
+              {departments.map((department: string) => <SelectItem value={department}>{department}</SelectItem>)}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
 
-      <Select id="location-filter" name="location" defaultValue="All" class="not-sw-prose">
-        <SelectTrigger class="w-60">
-          <SelectValue placeholder="Select a location" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectSearch placeholder="Search locations..." emptyText="No location found." />
-          <SelectGroup>
-            <SelectItem value="All">All</SelectItem>
-            {locations.map((location: string) => <SelectItem value={location}>{location}</SelectItem>)}
-          </SelectGroup>
-        </SelectContent>
-      </Select>
+        <Select id="location-filter" name="location" focusOnMobile={false}>
+          <SelectTrigger class="w-full sm:w-60">
+            <SelectValue placeholder="Select a location" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectSearch placeholder="Search locations..." emptyText="No location found." />
+            <SelectGroup>
+              <SelectItem value="All">All</SelectItem>
+              {locations.map((location: string) => <SelectItem value={location}>{location}</SelectItem>)}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </section>
 
-      <div id="open-roles">
+      <div id="open-roles" class="not-sw-prose flex flex-col gap-4">
         {jobs.map((job) => <JobCard job={job} data-department={job.department} data-location={job.location} />)}
       </div>
     </Prose>

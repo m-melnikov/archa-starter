@@ -1,5 +1,6 @@
 ---
 import type { Job } from "@/components/open-roles/JobCardTypes";
+import { getIcon } from "@/utils/getIcon";
 import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
 
@@ -11,13 +12,39 @@ interface Props extends HTMLAttributes<"article"> {
 export const jobCard = tv({});
 
 const { job, class: className, ...rest } = Astro.props;
+
+const icons = {
+  arrow: getIcon("ArrowRightDashed"),
+  location: getIcon("Location"),
+  clock: getIcon("Clock"),
+};
 ---
 
-<article class={jobCard({ class: className })} {...rest}>
-  {job.title}
-  <br />
-  {job.department}
-  <br />
-  {job.location}
-  <br />
+<article
+  class:list={["bg-card flex flex-col gap-4 rounded-md border border-black p-6", jobCard({ class: className })]}
+  {...rest}
+>
+  <header class="flex flex-col justify-between gap-4 sm:flex-row">
+    <div class="flex flex-wrap items-center gap-4">
+      <h3 class="text-xl font-bold">{job.title}</h3>
+      <span class="bg-muted rounded-xs px-2 py-1">{job.department}</span>
+    </div>
+
+    <a href={`/open-roles/${job.id}`} class="text-primary-accent hover:text-primary-foreground flex items-center gap-1">
+      Apply now <icons.arrow class="mt-1 size-5.5" aria-hidden />
+    </a>
+  </header>
+
+  <p>{job.description}</p>
+
+  <footer class="flex gap-5 text-sm">
+    <span class="flex items-center gap-2">
+      <icons.location class="mt-0.5 size-5.5" aria-hidden />
+      {job.location}
+    </span>
+    <span class="flex items-center gap-2">
+      <icons.clock class="mt-0.5 size-5.5" aria-hidden />
+      {job.type}
+    </span>
+  </footer>
 </article>

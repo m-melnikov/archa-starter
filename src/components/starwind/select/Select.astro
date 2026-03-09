@@ -14,11 +14,15 @@ type Props = HTMLAttributes<"div"> & {
    * Whether the select field is required in a form context
    */
   required?: boolean;
+  /**
+   * Whether the select search input should be focused on mobile devices
+   */
+  focusOnMobile?: boolean;
 
   children: any;
 };
 
-const { class: className, name, defaultValue, required, ...rest } = Astro.props;
+const { class: className, name, defaultValue, focusOnMobile, required, ...rest } = Astro.props;
 ---
 
 <div
@@ -26,6 +30,7 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
   data-name={name}
   data-value={defaultValue}
   data-required={required}
+  data-focusOnMobile={focusOnMobile}
   {...rest}
   data-slot="select"
 >
@@ -48,6 +53,7 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
     private typeaheadTimerRef: number | null = null;
     private typeaheadSearch = "";
     private returnFocusOnClose: boolean = true;
+    private focusOnMobile: boolean = true;
     private required: boolean = false;
 
     constructor(select: HTMLElement, selectIdx: number) {
@@ -60,6 +66,7 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
       if (!this.trigger || !this.content) return;
 
       this.required = this.select.getAttribute("data-required") === "true";
+      this.focusOnMobile = this.select.getAttribute("data-focusOnMobile") === "true";
 
       // animationDuration is set with inline styles through passed prop to SelectContent
       const animationDurationString = this.content.style.animationDuration;
@@ -263,12 +270,7 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
       document.addEventListener("pointerdown", (e) => {
         // only close if not a mouse pointer
         if (!window.matchMedia("(pointer: coarse)").matches) {
-          if (
-            !(
-              this.trigger?.contains(e.target as Node) || this.content?.contains(e.target as Node)
-            ) &&
-            this.isOpen
-          ) {
+          if (!(this.trigger?.contains(e.target as Node) || this.content?.contains(e.target as Node)) && this.isOpen) {
             this.returnFocusOnClose = false;
             this.closeSelect();
           }
@@ -277,10 +279,7 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
 
       // Handle click outside select content to close
       document.addEventListener("click", (e) => {
-        if (
-          !(this.trigger?.contains(e.target as Node) || this.content?.contains(e.target as Node)) &&
-          this.isOpen
-        ) {
+        if (!(this.trigger?.contains(e.target as Node) || this.content?.contains(e.target as Node)) && this.isOpen) {
           this.returnFocusOnClose = false;
           this.closeSelect();
         }
@@ -355,10 +354,7 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
 
       for (let i = startIndex; i !== end; i += step) {
         const item = items[i] as HTMLElement;
-        if (
-          item.getAttribute("data-disabled") !== "true" &&
-          item.getAttribute("data-filtered") !== "true"
-        ) {
+        if (item.getAttribute("data-disabled") !== "true" && item.getAttribute("data-filtered") !== "true") {
           return item;
         }
       }
@@ -442,10 +438,7 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
 
       const items = this.content.querySelectorAll('[role="option"]');
       for (const item of items) {
-        if (
-          item.getAttribute("data-disabled") !== "true" &&
-          item.getAttribute("data-filtered") !== "true"
-        ) {
+        if (item.getAttribute("data-disabled") !== "true" && item.getAttribute("data-filtered") !== "true") {
           return item as HTMLElement;
         }
       }
@@ -521,15 +514,9 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
 
     private setSize() {
       if (!this.trigger || !this.content) return;
-      this.content.style.setProperty(
-        "--starwind-select-content-width",
-        `${this.content.offsetWidth}px`,
-      );
+      this.content.style.setProperty("--starwind-select-content-width", `${this.content.offsetWidth}px`);
 
-      this.content.style.setProperty(
-        "--starwind-select-trigger-width",
-        `${this.trigger.offsetWidth}px`,
-      );
+      this.content.style.setProperty("--starwind-select-trigger-width", `${this.trigger.offsetWidth}px`);
     }
 
     private toggleSelect() {
@@ -560,7 +547,11 @@ const { class: className, name, defaultValue, required, ...rest } = Astro.props;
         }
 
         requestAnimationFrame(() => {
-          this.searchInput?.focus();
+          const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+          if (this.searchInput && (this.focusOnMobile || !isTouch)) {
+            this.searchInput.focus();
+          }
         });
       } else {
         // set active on the current selected item

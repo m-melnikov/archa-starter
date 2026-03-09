@@ -1,9 +1,9 @@
 @layer components {
   .content {
-    @apply max-w-content mx-auto px-4;
+    @apply max-w-content mx-auto w-full px-4;
   }
 
   .content-narrow {
-    @apply max-w-content-narrow mx-auto px-4;
+    @apply max-w-content-narrow mx-auto w-full px-4;
   }
 }

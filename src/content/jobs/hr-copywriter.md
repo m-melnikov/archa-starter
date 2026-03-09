@@ -1,5 +1,6 @@
 ---
 title: "HR Copywriter"
+description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
 department: "Copywriters"
 location: "Bishkek"
 type: "Part-time"
