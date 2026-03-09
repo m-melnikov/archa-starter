@@ -4,5 +4,4 @@ export interface Job {
   department: string;
   location: string;
   type: string;
-  richText: string;
 }
