@@ -59,9 +59,9 @@ export default defineConfig([
     },
     rules: {
       "no-undef": "off",
+      "prefer-const": "warn",
       "astro/jsx-a11y/anchor-is-valid": "off",
       "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/prefer-const": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
     },
   },

@@ -62,7 +62,11 @@ const locations: string[] = [...new Set(jobs.map((job) => job.location))];
       </section>
 
       <section id="jobs" class="not-sw-prose grid gap-4 lg:grid-cols-2">
-        {jobs.map((job) => <JobCard job={job} data-department={job.department} data-location={job.location} />)}
+        {
+          jobs.map((job) => (
+            <JobCard job={job} href={`/jobs/${job.id}`} data-department={job.department} data-location={job.location} />
+          ))
+        }
       </section>
 
       <div class="flex justify-center">

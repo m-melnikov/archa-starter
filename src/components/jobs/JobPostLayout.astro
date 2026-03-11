@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/components/shared/layouts/BaseLayout.astro";
+import Prose from "@/components/shared/starwind/prose";
+import { getIcon } from "@/utils/getIcon";
+
+const { frontmatter } = Astro.props;
+const title = frontmatter?.title;
+const description = frontmatter?.description;
+
+const icons = {
+  location: getIcon("Location"),
+  clock: getIcon("Clock"),
+};
+---
+
+<BaseLayout title={`${title} — Archa Starter`} description={description}>
+  <article class="content-narrow">
+    <header class="mb-8">
+      <h1 class="mb-4 text-4xl font-bold">{title}</h1>
+      <div class="flex flex-col gap-2">
+        {
+          frontmatter?.department && (
+            <p class="text-muted-foreground">
+              Department: <span class="bg-muted rounded-xs px-2 py-1">{frontmatter.department}</span>
+            </p>
+          )
+        }
+        {
+          frontmatter?.location && (
+            <span class="text-muted-foreground flex items-center gap-2">
+              <icons.location class="size-5.5" aria-hidden /> Location: {frontmatter.location}
+            </span>
+          )
+        }
+        {
+          frontmatter?.type && (
+            <span class="text-muted-foreground flex items-center gap-2">
+              <icons.clock class="size-5.5" aria-hidden /> Contract type: {frontmatter.type}
+            </span>
+          )
+        }
+      </div>
+    </header>
+    <Prose>
+      <section>
+        <slot />
+      </section>
+    </Prose>
+  </article>
+</BaseLayout>

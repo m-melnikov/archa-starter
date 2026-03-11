@@ -44,7 +44,7 @@ const headerStyles = tv({
 const {
   siteName = "Starwind Pro",
   links = [],
-  ctaText = "Get Started",
+  ctaText = "Contact",
   ctaHref = "#",
   class: className,
   ...rest
@@ -83,6 +83,9 @@ const hasLogoSlot = Astro.slots.has("logo");
     </nav>
 
     <div class="flex gap-4">
+      <!-- Theme Toggle Switcher -->
+      <ThemeSwitcher1 />
+
       <!-- Desktop CTA Button -->
       <div class="hidden @2xl:block">
         <Button href={ctaHref}>{ctaText}</Button>
@@ -127,9 +130,6 @@ const hasLogoSlot = Astro.slots.has("logo");
           </SheetContent>
         </Sheet>
       </nav>
-
-      <!-- Theme Toggle Switcher -->
-      <ThemeSwitcher1 />
     </div>
   </div>
 </header>

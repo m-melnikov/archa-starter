@@ -3,6 +3,10 @@
     @apply border-border outline-outline/50;
   }
 
+  html {
+    scrollbar-gutter: stable;
+  }
+
   button {
     @apply cursor-pointer;
   }

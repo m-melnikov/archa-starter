@@ -7,11 +7,12 @@ import { tv } from "tailwind-variants";
 interface Props extends HTMLAttributes<"article"> {
   /** Job information */
   job: Job;
+  href: string;
 }
 
 export const jobCard = tv({});
 
-const { job, class: className, ...rest } = Astro.props;
+const { job, href = "", class: className, ...rest } = Astro.props;
 
 const icons = {
   arrow: getIcon("ArrowRightDashed"),
@@ -20,34 +21,38 @@ const icons = {
 };
 ---
 
-<article
-  class:list={["bg-card border-border flex flex-col gap-4 rounded-md border p-6", jobCard({ class: className })]}
+<a
+  href={href}
+  class:list={[
+    "bg-card group rounded-md border p-6",
+    "hover:bg-muted active:bg-muted focus:bg-muted hover:text-accent-foreground",
+    jobCard({ class: className }),
+  ]}
   {...rest}
 >
-  <header class="flex flex-col justify-between gap-4 sm:flex-row">
-    <div class="flex flex-wrap items-center gap-4">
-      <h3 class="text-xl font-bold">{job.title}</h3>
-      <span class="bg-muted rounded-xs px-2 py-1">{job.department}</span>
-    </div>
+  <article class="flex flex-col gap-4">
+    <header class="flex flex-col justify-between gap-4 sm:flex-row">
+      <div class="flex flex-wrap items-center gap-4">
+        <h3 class="text-xl font-bold">{job.title}</h3>
+        <span class="bg-muted rounded-xs px-2 py-1">{job.department}</span>
+      </div>
 
-    <a
-      href={`/jobs/${job.id}`}
-      class="text-primary-accent hover:text-primary-foreground border-primary-foreground flex items-center gap-1 hover:border-b"
-    >
-      Apply now <icons.arrow class="size-5.5" aria-hidden />
-    </a>
-  </header>
+      <span class="text-primary-accent group-hover:text-accent-foreground flex items-center gap-1 whitespace-nowrap">
+        Apply now <icons.arrow class="size-5.5" aria-hidden />
+      </span>
+    </header>
 
-  <p>{job.description}</p>
+    <p>{job.description}</p>
 
-  <footer class="flex gap-5 text-sm">
-    <span class="flex items-center gap-2">
-      <icons.location class="size-5.5" aria-hidden />
-      {job.location}
-    </span>
-    <span class="flex items-center gap-2">
-      <icons.clock class="size-5.5" aria-hidden />
-      {job.type}
-    </span>
-  </footer>
-</article>
+    <footer class="flex gap-5 text-sm">
+      <span class="flex items-center gap-2">
+        <icons.location class="size-5.5" aria-hidden />
+        {job.location}
+      </span>
+      <span class="flex items-center gap-2">
+        <icons.clock class="size-5.5" aria-hidden />
+        {job.type}
+      </span>
+    </footer>
+  </article>
+</a>
