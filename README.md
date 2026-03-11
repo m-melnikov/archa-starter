@@ -1,215 +1,155 @@
-# Astro Example
+# Archa Starter (Astro)
 
-A boring, production-ready Astro starter.
+A modern **Astro starter for marketing and company websites**.
 
-Astro Example is an HTML-first starter designed for developers who want a clean foundation, not a framework demo.
+This project provides a clean, practical foundation for building static
+sites with **Astro**, **Tailwind CSS**, and a small set of reusable UI
+components. It focuses on clear structure, sensible defaults, and
+content-driven development without unnecessary complexity.
 
-No UI kit.<br>
-No runtime JavaScript by default.<br>
-No magic.
+The goal is to give you a **solid starting point** that stays out of
+your way as your project grows.
 
-Just solid structure, senior defaults, and a clear separation of concerns.
+---
 
-## Philosophy
+## Features
 
-Astro Example follows a simple rule:
+- **Astro-first architecture** (HTML-first components)
+- **Tailwind CSS v4** styling
+- **Reusable UI components**
+- **Content Collections support**
+- **SEO-ready setup**
+- **Accessible defaults**
+- **Minimal client-side JavaScript**
 
-**HTML is the source of truth.**
+---
 
-- Structure lives in `.astro` files
-- Content lives in content (`site.ts`, Markdown, YAML, etc.)
-- Behavior is opt-in and explicit
-- CSS is boring, predictable, and layered
+## Project Structure
 
-This starter is meant to disappear once you start building.
+    .
+    ├─ public
+    ├─ src
+    │  ├─ components
+    │  │  ├─ per-page-components...
+    │  │  └─ shared
+    │  │     ├─ head
+    │  │     └─ layouts
+    │  ├─ content
+    │  ├─ pages
+    │  ├─ styles
+    │  │  ├─ partials
+    │  │  │  ├─ animation.css
+    │  │  │  ├─ base.css
+    │  │  │  ├─ components.css
+    │  │  │  ├─ fonts.css
+    │  │  │  ├─ starwind.css
+    │  │  │  ├─ theme.css
+    │  │  │  ├─ tokens-dark.css
+    │  │  │  └─ tokens.css
+    │  │  └─ global.css
+    │  ├─ utils
+    │  └─ content.config.ts
+    │
+    ├─ astro.config.mjs (Astro)
+    ├─ tsconfig.json (TypeScript)
+    ├─ .prettierrc.mjs (Prettier)
+    ├─ eslint.config.mjs (ESLint)
+    ├─ starwind.config.json (Starwind UI)
+    └─ components.json (Starwind Pro)
 
-## What you get
+### Key directories
 
-### Structure
+**`src/pages`**\
+Astro routes and site pages.
 
-- Clean layout system (`BaseLayout.astro`)
-- Header / Footer components
-- Skip link for accessibility
-- 404 page included
-- Predictable file organization
+**`src/components`**\
+Reusable UI components and layout primitives.
 
-### SEO (done properly)
+**`src/content`**\
+Structured content using Astro Content Collections.
 
-- Centralized SEO.astro component
-- Canonical URLs
-- Open Graph & Twitter cards
-- JSON-LD support (opt-in, per page)
-- Robots meta handling
-- Theme color
+**`src/styles`**\
+Global styles and Tailwind-based design tokens.
 
-### Accessibility basics
+**`src/utils`**\
+Shared utilities used across the project.
 
-- Skip link (SkipLink.astro)
-- Semantic HTML
-- Focusable main content
-- No JS-only interactions
+---
 
-### CSS architecture
+## Getting Started
 
-No framework. No Tailwind by default.
+### Install dependencies
 
-Layered CSS structure:
-
-```
-src/styles/
-├─ global.css
-├─ partials/
-│  ├─ tokens.css      // design tokens (colors, spacing, fonts)
-│  ├─ reset.css       // minimal reset
-│  ├─ fonts.css       // @font-face declarations
-│  ├─ behaviors.css   // behavior-related CSS (x-dialog, etc.)
-│  └─ structure.css   // layout & base styles
-```
-
-- BEM-friendly
-- Easy to delete or replace
-- Easy to extend
-
-### Fonts
-
-- Fonts served from `/public/fonts`
-- Explicit @font-face
-- No external font dependency by default
-
-### Configuration as content
-
-All site metadata lives in one place:
-
-```
-// src/content/site.ts
-export const site = {
-  name,
-  tagline,
-  description,
-  url,
-  locale,
-  author,
-  nav,
-  seo
-};
+```bash
+pnpm install
 ```
 
-Used consistently across:
+### Start development server
 
-- Header
-- Footer
-- SEO
-- Pages
-- JSON-LD
-
-No duplication.
-
-## Layout API
-
-The layout is explicit and declarative.
-
-Example:
-
-```
-<BaseLayout
-  title="Contact"
-  description="Get in touch"
-  canonicalPath="/contact"
-  contentCentered
->
-  ...
-</Base>
+```bash
+pnpm dev --host
 ```
 
-Supported layout flags:
+### Build for production
 
-- `contentCentered` (example)
-- Easy to extend (`mainWide`, `mainNarrow`, etc.)
-
-The layout never guesses.
-Pages declare intent.
-
-## JSON-LD (opt-in)
-
-JSON-LD is rendered only if provided.
-
-Example:
-
-```
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: site.name,
-  url: site.url
-};
+```bash
+pnpm build
 ```
 
-Passed directly to the layout:
+### Preview production build
 
-`<BaseLayout jsonLd={jsonLd}>`
+```bash
+pnpm preview
+```
 
-No JSON-LD pollution by default.
+---
 
-## Environment
-
-Astro Example expects the following environment variable:
-
-`SITE_URL=https://example.com`
+## Environment Variables
 
 Create a `.env` file:
 
-`cp .env.example .env`
+```bash
+cp .env.example .env
+```
 
-Update `SITE_URL` with your domain.
+Example:
 
-Used for:
+    SITE_URL=https://example.com
 
-- Canonical URLs
-- JSON-LD
-- SEO consistency
+This is typically used for:
 
-Documented, explicit, predictable.
+- canonical URLs
+- SEO metadata
+- sitemap generation
 
-## Who this is for
+---
 
-This starter is for developers who:
+## Development Philosophy
 
-- Prefer HTML over abstractions
-- Care about SEO and accessibility
-- Want a clean base, not opinions forced on them
-- Are tired of over-engineered starters
+This starter favors:
 
-If you want a UI kit or heavy interactivity out of the box, this is not for you.
+- **clear structure over abstraction**
+- **content-driven development**
+- **progressive enhancement**
+- **minimal client-side JavaScript**
 
-## Who this is not for
+Astro handles rendering, while interactivity can be added only where
+needed.
 
-- Page builders
-- No-code tools
-- “Install and ship in 5 minutes” demos
-- Framework-centric mental models
+---
 
-## Extending Astro Example
+## Tech Stack
 
-Astro Example is designed to pair naturally with:
+- **Astro**
+- **Tailwind CSS**
+- **TypeScript**
+- **Starwind UI components**
+- **Starwind Pro components**
+- **Tabler Icons**
+- **ESLint + Prettier**
 
-- **Astro Content Collections**
-- **Build-time tools** (e.g. Frontmatter Core)
-- **HTML-first behavior layers** (e.g. Web Components, Alpine.js)
-- **Progressive enhancement**
-
-You add complexity only when you need it.
+---
 
 ## License
 
 MIT
-
-Do whatever you want.
-Build good websites.
-
-## Final note
-
-Astro Example is intentionally boring.
-
-That’s the point.
-
-If you never think about this starter again once your project starts, it did its job.
