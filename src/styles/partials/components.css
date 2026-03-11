@@ -6,4 +6,8 @@
   .content-narrow {
     @apply max-w-content-narrow mx-auto w-full px-4;
   }
+
+  .content-fit {
+    @apply mx-auto w-full max-w-fit px-4;
+  }
 }
