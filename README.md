@@ -10,6 +10,8 @@ content-driven development without unnecessary complexity.
 The goal is to give you a **solid starting point** that stays out of
 your way as your project grows.
 
+Starter is based on [Astro Baseline by Alexandre Desane](https://github.com/alexandredesane/astro-baseline).
+
 ---
 
 ## Features
