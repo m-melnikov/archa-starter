@@ -30,14 +30,14 @@ export type SiteConfig = {
 };
 
 export const site: SiteConfig = {
-  name: "Example Site",
-  tagline: "A boring, production-ready Astro starter.",
+  name: "Archa Starter",
+  tagline: "Production-ready Astro starter.",
   description:
-    "Example Site is a minimal HTML-first starter with senior defaults: SEO, JSON-LD, a11y basics, and clean structure.",
+    "Archa Starter is a boring HTML-first starter with senior defaults: SEO, JSON-LD, a11y basics, and clean structure.",
   url: import.meta.env.SITE_URL ?? "https://example.com",
   locale: "en",
   author: {
-    name: "Example",
+    name: "Archa Starter",
     email: "hello@example.com",
     url: "https://example.com",
     socials: [
@@ -50,7 +50,7 @@ export const site: SiteConfig = {
   nav: [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    { label: "Open roles", href: "/open-roles" },
+    { label: "Jobs", href: "/jobs" },
     { label: "Contact", href: "/contact" },
     { label: "Legal", href: "/legal" },
   ],

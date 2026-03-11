@@ -18,7 +18,7 @@ const {
   ogImage = site.seo.ogImage,
   robots = site.seo.robots,
   jsonLd,
-  contentCentered = false,
+  centered = false,
 } = Astro.props;
 
 const CF_TOKEN = "XXX";
@@ -58,7 +58,7 @@ const socialLinks: SocialLink[] =
       id="main"
       class:list={[
         "mx-auto w-full flex-1 shrink-0 basis-auto px-1 py-8 sm:px-6",
-        contentCentered && "grid place-items-center",
+        centered && "grid place-items-center",
       ]}
     >
       <slot />

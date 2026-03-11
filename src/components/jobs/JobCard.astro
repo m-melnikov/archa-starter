@@ -1,5 +1,5 @@
 ---
-import type { Job } from "@/components/open-roles/JobCardTypes";
+import type { Job } from "@/components/jobs/JobCardTypes";
 import { getIcon } from "@/utils/getIcon";
 import type { HTMLAttributes } from "astro/types";
 import { tv } from "tailwind-variants";
@@ -21,7 +21,7 @@ const icons = {
 ---
 
 <article
-  class:list={["bg-card flex flex-col gap-4 rounded-md border border-black p-6", jobCard({ class: className })]}
+  class:list={["bg-card border-border flex flex-col gap-4 rounded-md border p-6", jobCard({ class: className })]}
   {...rest}
 >
   <header class="flex flex-col justify-between gap-4 sm:flex-row">
@@ -30,7 +30,10 @@ const icons = {
       <span class="bg-muted rounded-xs px-2 py-1">{job.department}</span>
     </div>
 
-    <a href={`/open-roles/${job.id}`} class="text-primary-accent hover:text-primary-foreground flex items-center gap-1">
+    <a
+      href={`/jobs/${job.id}`}
+      class="text-primary-accent hover:text-primary-foreground border-primary-foreground flex items-center gap-1 hover:border-b"
+    >
       Apply now <icons.arrow class="size-5.5" aria-hidden />
     </a>
   </header>

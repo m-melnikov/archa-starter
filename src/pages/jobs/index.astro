@@ -1,7 +1,8 @@
 ---
-import JobCard from "@/components/open-roles/JobCard.astro";
-import type { Job } from "@/components/open-roles/JobCardTypes";
+import JobCard from "@/components/jobs/JobCard.astro";
+import type { Job } from "@/components/jobs/JobCardTypes";
 import BaseLayout from "@/components/shared/layouts/BaseLayout.astro";
+import Button from "@/components/shared/starwind/button";
 import Prose from "@/components/shared/starwind/prose";
 import {
   Select,
@@ -15,8 +16,8 @@ import {
 import { site } from "@/content/site";
 import { getCollection } from "astro:content";
 
-const title = `Open roles — ${site.name}`;
-const description = `Open roles at ${site.name}`;
+const title = `Jobs — ${site.name}`;
+const description = `Jobs at ${site.name}`;
 
 const jobs: Job[] = (await getCollection("jobs")).map((job) => ({ id: job.id, ...job.data }));
 const departments: string[] = [...new Set(jobs.map((job) => job.department))];
@@ -60,12 +61,12 @@ const locations: string[] = [...new Set(jobs.map((job) => job.location))];
         </Select>
       </section>
 
-      <div id="open-roles" class="not-sw-prose grid gap-4 lg:grid-cols-2">
+      <section id="jobs" class="not-sw-prose grid gap-4 lg:grid-cols-2">
         {jobs.map((job) => <JobCard job={job} data-department={job.department} data-location={job.location} />)}
-      </div>
+      </section>
 
-      <div class="flex justify-center pt-6">
-        <button id="see-more" class="text-primary-accent p-3 text-lg">See more</button>
+      <div class="flex justify-center">
+        <Button id="see-more" variant="outline">See More...</Button>
       </div>
     </Prose>
   </article>
@@ -76,7 +77,7 @@ const locations: string[] = [...new Set(jobs.map((job) => job.location))];
 
   // Variables
 
-  const parent = document.getElementById("open-roles");
+  const parent = document.getElementById("jobs");
   const jobCards = parent?.querySelectorAll<HTMLElement>("[data-department]") ?? [];
 
   const filters = {
@@ -84,7 +85,7 @@ const locations: string[] = [...new Set(jobs.map((job) => job.location))];
     location: "",
   };
 
-  const visibleLimitStep: number = 8;
+  const visibleLimitStep: number = 6;
   let visibleLimit: number = visibleLimitStep;
 
   // Functions
