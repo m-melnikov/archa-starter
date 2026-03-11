@@ -60,8 +60,12 @@ const locations: string[] = [...new Set(jobs.map((job) => job.location))];
         </Select>
       </section>
 
-      <div id="open-roles" class="not-sw-prose flex flex-col gap-4">
+      <div id="open-roles" class="not-sw-prose grid gap-4 lg:grid-cols-2">
         {jobs.map((job) => <JobCard job={job} data-department={job.department} data-location={job.location} />)}
+      </div>
+
+      <div class="flex justify-center pt-6">
+        <button id="see-more" class="text-primary-accent p-3 text-lg">See more</button>
       </div>
     </Prose>
   </article>
@@ -72,45 +76,87 @@ const locations: string[] = [...new Set(jobs.map((job) => job.location))];
 
   // Variables
 
-  const openRoles = document.getElementById("open-roles");
-  const jobCards = openRoles?.querySelectorAll<HTMLElement>("[data-department]");
+  const parent = document.getElementById("open-roles");
+  const jobCards = parent?.querySelectorAll<HTMLElement>("[data-department]") ?? [];
 
   const filters = {
     department: "",
     location: "",
   };
 
+  const visibleLimitStep: number = 8;
+  let visibleLimit: number = visibleLimitStep;
+
   // Functions
 
-  function renderJobs() {
+  function matchJobCard(jobCard: HTMLElement, department: string, location: string): boolean {
+    const departmentData = jobCard.getAttribute("data-department");
+    const locationData = jobCard.getAttribute("data-location");
+
+    const departmentMatch = !department || department === "All" || departmentData === department;
+    const locationMatch = !location || location === "All" || locationData === location;
+
+    return departmentMatch && locationMatch;
+  }
+
+  function filterJobCards(): HTMLElement[] {
+    const result: HTMLElement[] = [];
+
     const department = filters.department.trim();
     const location = filters.location.trim();
 
-    jobCards?.forEach((card) => {
-      const departmentData = card.getAttribute("data-department");
-      const locationData = card.getAttribute("data-location");
+    jobCards.forEach((jobCard) => {
+      const jobCardMatch = matchJobCard(jobCard, department, location);
 
-      const departmentsMatch = !department || department === "All" || departmentData === department;
-      const locationsMatch = !location || location === "All" || locationData === location;
-      const cardVisible = departmentsMatch && locationsMatch;
-
-      card.style.display = cardVisible ? "" : "none";
+      if (jobCardMatch) {
+        result.push(jobCard);
+      }
     });
+
+    return result;
+  }
+
+  function updateSeeMoreButton(total: number) {
+    const seeMore = document.getElementById("see-more");
+
+    if (!seeMore) return;
+
+    if (visibleLimit >= total) {
+      seeMore.hidden = true;
+    } else {
+      seeMore.hidden = false;
+    }
+  }
+
+  function renderJobCards(filteredJobCards: HTMLElement[]) {
+    jobCards.forEach((jobCard) => (jobCard.hidden = true));
+    filteredJobCards.slice(0, visibleLimit).forEach((jobCard) => (jobCard.hidden = false));
+    updateSeeMoreButton(filteredJobCards.length);
+  }
+
+  function updateJobCards() {
+    visibleLimit = visibleLimitStep;
+    renderJobCards(filterJobCards());
   }
 
   // Calls and Events
 
-  renderJobs();
+  updateJobCards();
+
+  document.getElementById("see-more")?.addEventListener("click", () => {
+    visibleLimit += visibleLimitStep;
+    renderJobCards(filterJobCards());
+  });
 
   document.getElementById("department-filter")?.addEventListener("starwind-select:change", (event: Event) => {
     const selectChangeEvent = event as SelectChangeEvent;
     filters.department = selectChangeEvent.detail.label ?? "";
-    renderJobs();
+    updateJobCards();
   });
 
   document.getElementById("location-filter")?.addEventListener("starwind-select:change", (event: Event) => {
     const selectChangeEvent = event as SelectChangeEvent;
     filters.location = selectChangeEvent.detail.label ?? "";
-    renderJobs();
+    updateJobCards();
   });
 </script>
