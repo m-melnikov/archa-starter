@@ -9,7 +9,7 @@
     }
   },
   "aliases": {
-    "components": "@/components",
+    "components": "@/components/shared",
     "utils": "@/utils"
   },
   "tailwind": {

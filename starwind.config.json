@@ -5,7 +5,7 @@
     "baseColor": "neutral",
     "cssVariables": true
   },
-  "componentDir": "src/components",
+  "componentDir": "src/components/shared",
   "utilsDir": "src/utils",
   "components": [
     {
@@ -31,10 +31,6 @@
     {
       "name": "toggle",
       "version": "1.0.2"
-    },
-    {
-      "name": "tabs",
-      "version": "1.4.2"
     },
     {
       "name": "select",

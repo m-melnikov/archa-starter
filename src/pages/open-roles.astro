@@ -1,8 +1,8 @@
 ---
-import BaseLayout from "@/components/layouts/BaseLayout.astro";
 import JobCard from "@/components/open-roles/JobCard.astro";
 import type { Job } from "@/components/open-roles/JobCardTypes";
-import Prose from "@/components/starwind/prose";
+import BaseLayout from "@/components/shared/layouts/BaseLayout.astro";
+import Prose from "@/components/shared/starwind/prose";
 import {
   Select,
   SelectContent,
@@ -11,7 +11,7 @@ import {
   SelectSearch,
   SelectTrigger,
   SelectValue,
-} from "@/components/starwind/select";
+} from "@/components/shared/starwind/select";
 import { site } from "@/content/site";
 import { getCollection } from "astro:content";
 
@@ -72,7 +72,7 @@ const locations: string[] = [...new Set(jobs.map((job) => job.location))];
 </BaseLayout>
 
 <script>
-  import type { SelectChangeEvent } from "@/components/starwind/select/SelectTypes";
+  import type { SelectChangeEvent } from "@/components/shared/starwind/select/SelectTypes";
 
   // Variables
 
