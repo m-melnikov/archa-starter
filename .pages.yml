@@ -1,0 +1,59 @@
+media:
+  label: Gallery
+  input: src/assets/images/media
+  output: assets/images/media
+
+content:
+  - name: jobs
+    label: Jobs
+    path: src/content/jobs
+    filename: "{fields.title}.md"
+    type: collection
+    view:
+      fields: [title, department, location, type]
+    fields:
+      - name: title
+        label: Title
+        required: true
+        type: string
+
+      - name: description
+        label: Description
+        required: true
+        type: string
+
+      - name: department
+        label: Department
+        required: true
+        type: string
+
+      - name: location
+        label: Location
+        required: true
+        type: string
+
+      - name: type
+        label: Type
+        required: true
+        type: string
+
+      - name: body
+        label: Body
+        required: true
+        type: text
+
+  - name: info
+    label: Information
+    path: src/content/info.md
+    type: file
+    fields:
+      - name: published
+        label: Published
+        type: date
+        options:
+          format: "yyyy-MM-dd HH:mm"
+
+      - name: body
+        label: Body
+        required: true
+        type: rich-text
